@@ -1,0 +1,16 @@
+  GNU nano 6.2         /etc/systemd/system/spring-app.service
+[Unit]
+Description=Spring Boot Application Service
+After=network.target mysql.service
+
+[Service]
+User=spring-runner
+Group=spring-runner
+WorkingDirectory=/opt/spring-app
+ExecStart=/usr/bin/java -jar /opt/spring-app/app.jar --server.port=8082 --sprin>
+Restart=on-failure
+RestartSec=10
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
